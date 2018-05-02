@@ -39,18 +39,19 @@ public class LoginServlet extends HttpServlet {
                 *
                 *  The else part of the conditional runs for a regular login attempt
                 */
-                if(request.getParameter("reset") != null) {
-                    User user = (User) request.getSession().getAttribute("user");
+                User user = (User) request.getSession().getAttribute("user");
+                if(request.getParameter("reset") != null) {                    
                     user.setPassword(password);                    
                     request.getSession().setAttribute("user", user);                    
                     
                     toPage = "/account_activity.jsp";
-                } else {                    
-                    if(username.equals("jsmith@toba.com") && password.equals("letmein")) {			
-			toPage = "/account_activity.jsp";
-                    } else {
-			toPage = "/login_failure.jsp";	
-                    }
+                } else {           
+                    System.out.println(user.getPassword());
+                    System.out.println(user.getUsername());
+                    if(user.getUsername().equals(username) && user.getPassword().equals(password))
+                        toPage = "/account_activity.jsp";
+                    else
+                        toPage = "/login_failure.jsp";
                 }
                 
 		
