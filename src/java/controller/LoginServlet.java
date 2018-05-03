@@ -45,9 +45,7 @@ public class LoginServlet extends HttpServlet {
                     request.getSession().setAttribute("user", user);                    
                     
                     toPage = "/account_activity.jsp";
-                } else {           
-                    System.out.println(user.getPassword());
-                    System.out.println(user.getUsername());
+                } else {
                     if(user.getUsername().equals(username) && user.getPassword().equals(password))
                         toPage = "/account_activity.jsp";
                     else
